@@ -12,7 +12,18 @@
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script>
 		function calc(){
+			
+			
 			var ckje=document.getElementById("amount").value;
+			
+			var regExp=/^[0-9]{2,6}$/;
+			if(!regExp.test(ckje)){
+				//输入不合法
+				document.getElementById("amount").value="输入不合法！必须是二到六位数";
+				document.getElementById("amount").style="color:red";
+				return;
+			}
+			
 			var cknum=parseInt(ckje)//字符串转成整数
 			var lilv=document.getElementById("year").value;
 			var lixi=cknum*lilv;//利息
@@ -20,6 +31,10 @@
 			document.getElementById("lixi").value=lixi;
 			document.getElementById("total").value=total;
 			
+			}
+		function clearContent(){
+				document.getElementById("amount").value='';
+				document.getElementById("amount").style="color：black";
 		}
 	</script>
 	</head>
@@ -34,7 +49,7 @@
 			<tr>
 				<td>存款金额</td>
 				<td>
-					<input  class="form-control" type="text" placeholder="请输入存款金额" id="amount">
+					<input onfocus="clearContent()"  class="form-control" type="text" placeholder="请输入存款金额" id="amount">
 				</td>
 			</tr>
 			<tr>
@@ -42,9 +57,9 @@
 				<td>
 					<select id="year" class="form-control">
 						<option value="0.0175">一年(1.75%)</option>
-						<option value="0.0225">二年(2.25%)</option>
-						<option value="0.0275">三年(2.75%)</option>
-						<option value="0.0275">五年(2.75%)</option>
+						<option value="0.045">二年(2.25%)</option>
+						<option value="0.0825">三年(2.75%)</option>
+						<option value="0.1375">五年(2.75%)</option>
 					</select>
 				</td>
 			</tr>
